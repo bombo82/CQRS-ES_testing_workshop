@@ -20,9 +20,16 @@ namespace CqrsMovie.Seats.Domain.Entities
     //private Guid userId;
 
     protected DailyProgramming()
-    { }
+    {}
 
-    public DailyProgramming(DailyProgrammingId aggregateId, MovieId movieId, ScreenId screenId, DateTime date, IEnumerable<Messages.Dtos.Seat> freeSeats, string movieTitle, string screenName)
+    public static DailyProgramming CreateDailyProgramming(DailyProgrammingId aggregateId, MovieId movieId,
+        ScreenId screenId, DateTime date, IEnumerable<Messages.Dtos.Seat> freeSeats, string movieTitle,
+        string screenName)
+    {
+        return new DailyProgramming(aggregateId, movieId, screenId, date, freeSeats, movieTitle, screenName);
+    }
+
+    private DailyProgramming(DailyProgrammingId aggregateId, MovieId movieId, ScreenId screenId, DateTime date, IEnumerable<Messages.Dtos.Seat> freeSeats, string movieTitle, string screenName)
     {
       //Null checks etc. ....
 

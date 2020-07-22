@@ -29,11 +29,11 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.6" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.6" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.6" />
-    <PackageReference Include="Muflone.MassTransit.RabbitMQ" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CqrsMovie.Messages\CqrsMovie.Messages.csproj" />
+    <ProjectReference Include="..\Muflone.MassTransit.RabbitMQ\src\Muflone.MassTransit.RabbitMQ\Muflone.MassTransit.RabbitMQ.csproj" />
   </ItemGroup>
 
   <ItemGroup>

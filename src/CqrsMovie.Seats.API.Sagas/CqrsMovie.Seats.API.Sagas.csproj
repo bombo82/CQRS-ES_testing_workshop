@@ -18,14 +18,17 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.6" />
-    <PackageReference Include="Muflone.MassTransit.RabbitMQ" Version="1.0.1" />
+    <PackageReference Include="Muflone.EventStore" Version="1.0.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CqrsMovie.Messages\CqrsMovie.Messages.csproj" />
+    <ProjectReference Include="..\CqrsMovie.Seats.Domain\CqrsMovie.Seats.Domain.csproj" />
+    <ProjectReference Include="..\CqrsMovie.Seats.Infrastructure\CqrsMovie.Seats.Infrastructure.csproj" />
   </ItemGroup>
 
 

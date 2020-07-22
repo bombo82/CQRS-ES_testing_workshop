@@ -47,9 +47,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CqrsMovie.MufloneBank", "Cq
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Seats Sagas", "Seats Sagas", "{438209F7-9F65-4B37-85FA-BA79A392792A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CqrsMovie.Seats.Sagas", "CqrsMovie.Seats.Sagas\CqrsMovie.Seats.Sagas.csproj", "{F8103F97-5BC0-4B04-BDA4-103CD85D4E29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CqrsMovie.Seats.Sagas", "CqrsMovie.Seats.Sagas\CqrsMovie.Seats.Sagas.csproj", "{F8103F97-5BC0-4B04-BDA4-103CD85D4E29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CqrsMovie.Seats.API.Sagas", "CqrsMovie.Seats.API.Sagas\CqrsMovie.Seats.API.Sagas.csproj", "{AE00EFE6-C635-474C-A4B3-8E4A92460073}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CqrsMovie.Seats.API.Sagas", "CqrsMovie.Seats.API.Sagas\CqrsMovie.Seats.API.Sagas.csproj", "{AE00EFE6-C635-474C-A4B3-8E4A92460073}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Muflone", "Muflone", "{ED8C1FD1-4E25-466A-87F9-6EE581180E92}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Muflone.Saga", "Muflone.Saga\src\Muflone.Saga\Muflone.Saga.csproj", "{3447D9D0-F8D5-476C-9ED8-196B34EEAA41}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Muflone.MassTransit.RabbitMQ", "Muflone.MassTransit.RabbitMQ\src\Muflone.MassTransit.RabbitMQ\Muflone.MassTransit.RabbitMQ.csproj", "{1692EF8C-1088-4F6E-A665-FAA6DC87CD2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,6 +131,14 @@ Global
 		{AE00EFE6-C635-474C-A4B3-8E4A92460073}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE00EFE6-C635-474C-A4B3-8E4A92460073}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE00EFE6-C635-474C-A4B3-8E4A92460073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3447D9D0-F8D5-476C-9ED8-196B34EEAA41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3447D9D0-F8D5-476C-9ED8-196B34EEAA41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3447D9D0-F8D5-476C-9ED8-196B34EEAA41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3447D9D0-F8D5-476C-9ED8-196B34EEAA41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1692EF8C-1088-4F6E-A665-FAA6DC87CD2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1692EF8C-1088-4F6E-A665-FAA6DC87CD2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1692EF8C-1088-4F6E-A665-FAA6DC87CD2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1692EF8C-1088-4F6E-A665-FAA6DC87CD2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,6 +162,8 @@ Global
 		{319FF339-821A-4C5D-9AD7-CADFA4BC0C6B} = {56D8DD45-B428-43C6-AAE0-ED30B75010AE}
 		{F8103F97-5BC0-4B04-BDA4-103CD85D4E29} = {438209F7-9F65-4B37-85FA-BA79A392792A}
 		{AE00EFE6-C635-474C-A4B3-8E4A92460073} = {438209F7-9F65-4B37-85FA-BA79A392792A}
+		{3447D9D0-F8D5-476C-9ED8-196B34EEAA41} = {ED8C1FD1-4E25-466A-87F9-6EE581180E92}
+		{1692EF8C-1088-4F6E-A665-FAA6DC87CD2D} = {ED8C1FD1-4E25-466A-87F9-6EE581180E92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {596E135C-5B9F-40DE-A6E4-E6F879B9D328}
