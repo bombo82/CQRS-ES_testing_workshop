@@ -8,7 +8,6 @@ using CqrsMovie.SharedKernel.Domain.Ids;
 using Microsoft.Extensions.Logging.Abstractions;
 using Muflone.Messages.Commands;
 using Muflone.Messages.Events;
-using Muflone.SpecificationTests;
 
 namespace CqrsMovie.Seats.Domain.Tests.Entities
 {
