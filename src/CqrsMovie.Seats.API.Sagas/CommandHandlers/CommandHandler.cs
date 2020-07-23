@@ -1,54 +1,37 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Muflone.Core;
 using Muflone.Messages.Commands;
-using Muflone.Persistence;
 
 namespace CqrsMovie.Seats.API.Sagas.CommandHandlers
 {
-  public abstract class CommandHandler<TCommand> : ICommandHandler<TCommand> where TCommand : ICommand
-  {
-    protected readonly IRepository Repository;
-    protected readonly ILogger Logger;
-
-    protected CommandHandler(IRepository repository, ILoggerFactory loggerFactory)
+    public abstract class CommandHandler<TCommand> : ICommandHandler<TCommand> where TCommand : ICommand
     {
-      this.Repository = repository ?? throw new ArgumentNullException(nameof(repository));
-      this.Logger = loggerFactory.CreateLogger(this.GetType());
-    }
+        protected readonly ILogger Logger;
 
-    protected async Task<TAggregate> Get<TAggregate>(IDomainId id) where TAggregate : AggregateRoot
-    {
-      var aggregate = await this.Repository.GetById<TAggregate>(id);
-      if (aggregate == null)
-        throw new Exception($"{typeof(TAggregate).Name} not found");
-      return aggregate;
-    }
+        protected CommandHandler(ILoggerFactory loggerFactory)
+        {
+            this.Logger = loggerFactory.CreateLogger(this.GetType());
+        }
 
-    protected async Task Save<TAggregate>(TAggregate aggregate) where TAggregate : AggregateRoot
-    {
-      await this.Repository.Save(aggregate, Guid.NewGuid());
-    }
+        public abstract Task Handle(TCommand command);
 
-    public abstract Task Handle(TCommand command);
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+            }
+        }
 
-    protected virtual void Dispose(bool disposing)
-    {
-      if (disposing)
-      {
-      }
-    }
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-    public void Dispose()
-    {
-      this.Dispose(true);
-      GC.SuppressFinalize(this);
+        ~CommandHandler()
+        {
+            this.Dispose(false);
+        }
     }
-
-    ~CommandHandler()
-    {
-      this.Dispose(false);
-    }
-  }
 }

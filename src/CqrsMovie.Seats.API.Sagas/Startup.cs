@@ -1,12 +1,10 @@
 using CqrsMovie.Seats.API.Sagas.Consumers;
 using CqrsMovie.Seats.API.Sagas.Persistence;
-using CqrsMovie.Seats.Infrastructure.MassTransit.Commands;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Muflone.Eventstore;
 using Muflone.MassTransit.RabbitMQ;
 using Muflone.Saga.Persistence;
 
@@ -25,7 +23,6 @@ namespace CqrsMovie.Seats.API.Sagas
 		{
 			services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddScoped<ISagaRepository, InMemorySagaRepository>();
-            services.AddMufloneEventStore(Configuration.GetConnectionString("EventStore"));
 			services.AddScoped<ISerializer, Serializer>();
 
 			services.Configure<ServiceBusOptions>(Configuration.GetSection("MassTransit:RabbitMQ"));
@@ -36,7 +33,7 @@ namespace CqrsMovie.Seats.API.Sagas
 			{
 				//x.AddConsumer<StartBookSeatsSagaConsumer>();
 
-                x.AddConsumer<BookSeatsConsumer>();
+                x.AddConsumer<BookSeatsSagaConsumer>();
 			});
 
             services.AddSwaggerGen(c =>

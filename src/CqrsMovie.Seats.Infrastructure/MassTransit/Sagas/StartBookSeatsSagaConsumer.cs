@@ -6,7 +6,7 @@ using Muflone.MassTransit.RabbitMQ.Consumers;
 using Muflone.Saga;
 using Muflone.Saga.Persistence;
 
-namespace CqrsMovie.Seats.API.Sagas.Consumers
+namespace CqrsMovie.Seats.Infrastructure.MassTransit.Sagas
 {
     public class StartBookSeatsSagaConsumer : SagaStartedByConsumerBase<StartBookSeatsSaga>
     {
@@ -21,8 +21,8 @@ namespace CqrsMovie.Seats.API.Sagas.Consumers
 
         public override async Task Consume(ConsumeContext<StartBookSeatsSaga> context)
         {
-            using var handler = this.Handler;
-            await handler.StartedBy(context.Message);
+            using(var handler = this.Handler)
+                await handler.StartedBy(context.Message);
         }
 
         protected override ISagaStartedBy<StartBookSeatsSaga> Handler => new BookSeatsSaga(this.serviceBus, this.repository);

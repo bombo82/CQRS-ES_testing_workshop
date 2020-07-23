@@ -9,11 +9,13 @@ namespace CqrsMovie.Seats.Infrastructure.MassTransit.Commands
   {
     protected readonly IRepository Repository;
     protected readonly ILoggerFactory LoggerFactory;
+    protected readonly ILogger Logger;
 
     protected CommandConsumer(IRepository repository, ILoggerFactory loggerFactory)
     {
       Repository = repository;
       LoggerFactory = loggerFactory;
+      Logger = loggerFactory.CreateLogger(this.GetType());
     }
   }
 }

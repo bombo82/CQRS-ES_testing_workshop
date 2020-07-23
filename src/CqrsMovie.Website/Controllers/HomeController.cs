@@ -89,8 +89,7 @@ namespace CqrsMovie.Website.Controllers
     public async Task<IActionResult> StartSagaBookSeats()
     {
         var correlationalId = Guid.NewGuid();
-        await this.serviceBus.Send(new StartBookSeatsSaga(new DailyProgrammingId(DailyProgramming1), correlationalId,
-            "user"));
+        await this.serviceBus.Send(new StartBookSeatsSaga(new DailyProgrammingId(DailyProgramming1), correlationalId));
 
         ViewData["Message"] = "StartBookSeatsSaga commands sent";
         return RedirectToAction("Index");
