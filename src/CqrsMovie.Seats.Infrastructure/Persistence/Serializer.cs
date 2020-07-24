@@ -2,7 +2,7 @@
 using Muflone.Saga.Persistence;
 using Newtonsoft.Json;
 
-namespace CqrsMovie.Website.Persistence
+namespace CqrsMovie.Seats.Infrastructure.Persistence
 {
 	public class Serializer: ISerializer
 	{

@@ -1,7 +1,8 @@
-﻿using CqrsMovie.Seats.Infrastructure.MassTransit.Sagas;
+﻿using CqrsMovie.Seats.Infrastructure.MassTransit.Commands;
+using CqrsMovie.Seats.Infrastructure.MassTransit.Sagas;
+using CqrsMovie.Seats.Infrastructure.Persistence;
 using CqrsMovie.Website.Infrastructure.MassTransit.Events;
 using CqrsMovie.Website.Infrastructure.MongoDb;
-using CqrsMovie.Website.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,9 +25,7 @@ namespace CqrsMovie.Website
     { 
       services.AddMvc(option => option.EnableEndpointRouting = false);
       services.AddMongoDb(Configuration.GetConnectionString("MongoDB"));
-      services.AddScoped<ISagaRepository, InMemorySagaRepository>();
-      services.AddScoped<ISerializer, Serializer>();
-            services.Configure<ServiceBusOptions>(Configuration.GetSection("MassTransit:RabbitMQ"));
+      services.Configure<ServiceBusOptions>(Configuration.GetSection("MassTransit:RabbitMQ"));
       var serviceBusOptions = new ServiceBusOptions();
       Configuration.GetSection("MassTransit:RabbitMQ").Bind(serviceBusOptions);
       services.AddMufloneMassTransitWithRabbitMQ(serviceBusOptions, x =>
@@ -34,7 +33,7 @@ namespace CqrsMovie.Website
         x.AddConsumer<DailyProgrammingCreatedConsumer>();
         x.AddConsumer<SeatsReservedConsumer>();
         x.AddConsumer<SeatsBookedConsumer>();
-        x.AddConsumer<StartBookSeatsSagaConsumer>();
+        //x.AddConsumer<StartBookSeatsSagaConsumer>();
       });
     }
 
