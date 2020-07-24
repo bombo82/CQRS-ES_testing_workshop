@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using CqrsMovie.Messages.Commands.Seat;
-using CqrsMovie.Messages.Events.Seat;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 using Muflone;
@@ -10,8 +9,7 @@ using Muflone.Saga.Persistence;
 
 namespace CqrsMovie.Seats.Infrastructure.MassTransit.Sagas
 {
-    public class StartBookSeatsSagaConsumer : SagaConsumer<StartBookSeatsSaga>,
-        ISagaEventHandler<SeatsBooked>
+    public class StartBookSeatsSagaConsumer : SagaStartedByConsumer<StartBookSeatsSaga>
     {
         public StartBookSeatsSagaConsumer(ISagaRepository repository, IServiceBus serviceBus, ILoggerFactory loggerFactory)
             : base(repository, serviceBus, loggerFactory)
@@ -26,11 +24,6 @@ namespace CqrsMovie.Seats.Infrastructure.MassTransit.Sagas
 
         protected override ISagaStartedBy<StartBookSeatsSaga> Handler => new BookSeatsSaga(this.ServiceBus, this.Repository);
         
-        public Task Handle(SeatsBooked @event)
-        {
-            return Task.CompletedTask;
-        }
-
         #region Dispose
         protected virtual void Dispose(bool disposing)
         {

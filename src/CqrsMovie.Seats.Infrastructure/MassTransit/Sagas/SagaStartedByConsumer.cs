@@ -7,14 +7,14 @@ using Muflone.Saga.Persistence;
 
 namespace CqrsMovie.Seats.Infrastructure.MassTransit.Sagas
 {
-    public abstract class SagaConsumer<TCommand> : SagaStartedByConsumerBase<TCommand> where TCommand : Command
+    public abstract class SagaStartedByConsumer<TCommand> : SagaStartedByConsumerBase<TCommand> where TCommand : Command
     {
         protected readonly ISagaRepository Repository;
         protected readonly IServiceBus ServiceBus;
         protected readonly ILoggerFactory LoggerFactory;
         protected readonly ILogger Logger;
 
-        protected SagaConsumer(ISagaRepository repository, IServiceBus serviceBus,
+        protected SagaStartedByConsumer(ISagaRepository repository, IServiceBus serviceBus,
             ILoggerFactory loggerFactory)
         {
             this.Repository = repository;
