@@ -1,15 +1,12 @@
-﻿using CqrsMovie.Seats.Infrastructure.MassTransit.Commands;
-using CqrsMovie.Seats.Infrastructure.MassTransit.Events;
-using CqrsMovie.Seats.Infrastructure.MongoDb;
+using CqrsMovie.Sagas.Infrastructure.MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Muflone.Eventstore;
 using Muflone.MassTransit.RabbitMQ;
 
-namespace CqrsMovie.Seats.API
+namespace CqrsMovie.Sagas.API
 {
 	public class Startup
 	{
@@ -23,8 +20,9 @@ namespace CqrsMovie.Seats.API
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc(option => option.EnableEndpointRouting = false);
-			services.AddMongoDB(Configuration.GetConnectionString("MongoDB"));
-			services.AddMufloneEventStore(Configuration.GetConnectionString("EventStore"));
+			
+			//services.AddScoped<ISagaRepository, InMemorySagaRepository>();
+			//services.AddScoped<ISerializer, Serializer>();
 
 			services.Configure<ServiceBusOptions>(Configuration.GetSection("MassTransit:RabbitMQ"));
 			var serviceBusOptions = new ServiceBusOptions();
@@ -32,14 +30,9 @@ namespace CqrsMovie.Seats.API
 
 			services.AddMufloneMassTransitWithRabbitMQ(serviceBusOptions, x =>
 			{
-				x.AddConsumer<CreateDailyProgrammingConsumer>();
-				x.AddConsumer<DailyProgrammingCreatedConsumer>();
-
-				x.AddConsumer<BookSeatsConsumer>();
-				x.AddConsumer<SeatsBookedConsumer>();
-
-				x.AddConsumer<ReserveSeatsConsumer>();
-				x.AddConsumer<SeatsReservedConsumer>();
+				x.AddConsumer<StartBookSeatsSagaConsumer>();
+				x.AddConsumer<SeatsBookedSagaConsumer>();
+				x.AddConsumer<SeatsAlreadyTakenSagaConsumer>();
 			});
 
 			services.AddSwaggerGen(c =>
@@ -73,7 +66,7 @@ namespace CqrsMovie.Seats.API
 			});
 			app.UseSwaggerUI(c =>
 			{
-				c.SwaggerEndpoint("/documentation/v1/documentation.json", "CQRS Movie Seats API v1");
+				c.SwaggerEndpoint("/documentation/v1/documentation.json", "CQRS Movie Sagas API v1");
 			});
 		}
 	}
